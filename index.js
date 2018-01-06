@@ -8,7 +8,11 @@ var cache = {}
 module.exports = function(options){
 	return function($){
 		var pathname = $.url.pathname;
-		var mimeType = mime.getType(pathname);
+        if (mime.lookup) {
+            var mimeType = mime.lookup(pathname);
+        } else {
+            var mimeType = mime.getType(pathname);
+        }
 		var extension = path.extname(pathname);
 		var dateOffset = 604800000;
 		
