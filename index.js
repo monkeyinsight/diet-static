@@ -17,7 +17,7 @@ module.exports = function(options){
 		var dateOffset = 604800000;
 		
 		// if no route was specified there is an extension and mimeType is not binary
-		if(extension){
+		if(extension || /\.well-known/.test(pathname)){
 			// set header
 			$.header('Content-Type', mimeType);
 			$.status(200);
